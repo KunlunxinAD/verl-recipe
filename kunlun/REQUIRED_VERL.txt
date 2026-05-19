@@ -1,0 +1,16 @@
+# grpo_kunlun — rolling; exact commits refreshed from this workspace
+UPSTREAM=https://github.com/KunlunxinAD/verl.git
+MODE=rolling
+BRANCH=klx_dev
+# Exact upstream verl commit this file was refreshed against (core library).
+VERL_COMMIT=3e87a68b12f0b9a11a8f67231712673c6fed3569
+PIP_INSTALL=pip install verl@git+https://github.com/KunlunxinAD/verl.git@3e87a68b12f0b9a11a8f67231712673c6fed3569
+GIT_SETUP=git clone https://github.com/KunlunxinAD/verl.git && cd verl && git checkout 3e87a68b12f0b9a11a8f67231712673c6fed3569 && git submodule update --init --recursive recipe
+# Recipe submodule snapshot at the same verl checkout (see `git ls-tree HEAD recipe` in verl).
+RECIPE_SUBMODULE_COMMIT=ba246418f4de12b845a09bba975f1a5242adc898
+RECIPE_FOLDER=kunlun
+# Latest commit in the recipe repo that touched only this recipe subdirectory.
+RECIPE_FOLDER_LAST_COMMIT=1f249f6a3c2ef56290f0f128fad833aba000f8f1
+NOTES=VERL_COMMIT pins the core library; RECIPE_SUBMODULE_COMMIT is the `recipe/` submodule gitlink at that verl revision; RECIPE_FOLDER_LAST_COMMIT narrows to this folder inside the submodule.
+REFRESH=Recompute: (cd verl && git rev-parse HEAD); (cd verl/recipe && git rev-parse HEAD); (cd verl/recipe && git log -1 --format=%H -- r1_ascend)
+

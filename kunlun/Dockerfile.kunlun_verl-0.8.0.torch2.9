@@ -1,0 +1,17 @@
+# Pull base image
+FROM iregistry.baidu-int.com/kunlunxin-self-driving/kunlun_vllm_ubuntu2204_torch29:dev3_0.13.0 
+
+WORKDIR /workspace
+
+RUN git clone https://github.com/KunlunxinAD/verl.git
+
+RUN git clone https://github.com/NVIDIA/Megatron-LM.git && cd Megatron-LM && git checkout core_v0.15.3
+
+RUN git clone https://github.com/ISEEKYAN/mbridge.git && cd mbridge && git checkout qwen3vl_cp
+
+ENV PATH /root/miniconda/envs/python310_torch29_cuda/bin:$PATH
+
+RUN cd verl && git checkout klx_v0.8.0_torch2.9 && pip install -e . && pip install -U ray && \
+    pip install qwen-vl-utils && pip install mathruler
+
+
